@@ -25,7 +25,7 @@ while [ $SECONDS -lt $end ]; do
   ls /proc >/dev/null 2>&1
 done
 wait $probe
-python3 - "$out" "$(nproc)" <<'PY'
+python3 -I - "$out" "$(nproc)" <<'PY'
 import re, sys
 out, ncpu = sys.argv[1], int(sys.argv[2])
 kp, tp = {}, {}
