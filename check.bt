@@ -1,0 +1,7 @@
+// sysenter-check: does your kernel deliver BPF programs on syscall-enter
+// tracepoints on every CPU, or on one? Counts openat() two ways for 10 s:
+// a kprobe on the handler (ground truth) and the syscall-enter tracepoint.
+// Run under a workload that opens files on every CPU (check.sh makes one).
+kprobe:__x64_sys_openat { @kprobe[cpu] = count(); }
+tracepoint:syscalls:sys_enter_openat { @tracepoint[cpu] = count(); }
+interval:s:10 { exit(); }
