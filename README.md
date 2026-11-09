@@ -13,6 +13,8 @@ table and a verdict. Exit code 0 = fine, 1 = affected, 2 = could not judge.
 
 What it looks like on an affected machine (Ubuntu 24.04, `7.0.0-38-generic`, 16 CPUs):
 
+![openat() per CPU: the kprobe sees every call on all 16 CPUs, the syscall-enter tracepoint fires on CPU 0 only](figures/per-cpu.png)
+
 ```
  cpu  openat calls (kprobe)  tracepoint fired
    0                   4331              4338
